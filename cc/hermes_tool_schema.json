@@ -1,0 +1,29 @@
+{
+  "name": "execute_remote_ssh",
+  "description": "通过 SSH 在已授权的目标服务器上执行白名单内的诊断命令或服务重启命令。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "target_host": {
+        "type": "string",
+        "description": "已配置在 HERMES_SSH_HOSTS 中的 SSH 别名，例如 node-1。"
+      },
+      "command": {
+        "type": "string",
+        "description": "允许的命令，例如 free -m、uptime、df -h、systemctl status nginx 或 systemctl restart nginx。"
+      },
+      "timeout": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 60,
+        "default": 15,
+        "description": "远程命令的最长执行时间（秒）。"
+      }
+    },
+    "required": [
+      "target_host",
+      "command"
+    ],
+    "additionalProperties": false
+  }
+}
